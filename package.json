@@ -3,46 +3,57 @@
   "description": "Convert HTML entities to HTML characters, e.g. `&gt;` converts to `>`.",
   "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/unescape",
-  "author": {
-    "name": "Jon Schlinkert",
-    "url": "https://github.com/jonschlinkert"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jonschlinkert/unescape.git"
-  },
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/unescape",
   "bugs": {
     "url": "https://github.com/jonschlinkert/unescape/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/jonschlinkert/unescape/blob/master/LICENSE-MIT"
-    }
+  "license": "MIT",
+  "files": [
+    "index.js"
   ],
   "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha"
   },
   "devDependencies": {
-    "verb-tag-jscomments": ">= 0.2.0",
-    "verb": ">= 0.2.6",
-    "mocha": "*"
+    "gulp-format-md": "^0.1.11",
+    "mocha": "^3.2.0"
   },
   "keywords": [
-    "string",
-    "entity",
-    "entities",
     "char",
-    "characters",
     "character",
-    "html",
-    "xml",
+    "characters",
+    "entities",
+    "entity",
     "escape",
+    "html",
+    "string",
+    "un-escape",
     "unescape",
-    "un-escape"
-  ]
+    "xml"
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "related": {
+      "list": []
+    },
+    "reflinks": [
+      "verb",
+      "verb-generate-readme"
+    ]
+  }
 }

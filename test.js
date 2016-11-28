@@ -1,12 +1,6 @@
-/*!
- * unescape <https://github.com/jonschlinkert/unescape>
- *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
- * Licensed under the MIT License
- */
-
 'use strict';
 
+require('mocha');
 var assert = require('assert');
 var unescape = require('./');
 
