@@ -1,13 +1,6 @@
-/*!
- * unescape <https://github.com/jonschlinkert/unescape>
- *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
- * Licensed under the MIT License
- */
-
-
 'use strict';
 
+var cache;
 
 /**
  * Convert HTML entities to HTML characters.
@@ -16,19 +9,17 @@
  * @return {String}
  */
 
-var unescape = module.exports = function (str) {
+var unescape = module.exports = function(str) {
   if (str == null) return '';
 
-  var re = new RegExp('(' + Object.keys(chars)
-    .join('|') + ')', 'g');
-
-  return String(str).replace(re, function (match) {
+  var re = cache || (cache = new RegExp('(' + Object.keys(chars).join('|') + ')', 'g'));
+  return String(str).replace(re, function(match) {
     return chars[match];
   });
 };
 
-
 var chars = unescape.chars = {
+  '&apos;': '\'',
   '&#39;': '\'',
   '&amp;': '&',
   '&gt;': '>',
