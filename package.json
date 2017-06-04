@@ -49,11 +49,16 @@
       "reflinks": true
     },
     "related": {
-      "list": []
+      "list": [
+        "html-elements",
+        "html-tag",
+        "html-toc",
+        "is-self-closing"
+      ]
     },
     "reflinks": [
-      "verb",
-      "verb-generate-readme"
+      "ent",
+      "html-entities"
     ]
   }
 }
