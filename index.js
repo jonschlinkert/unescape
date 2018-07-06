@@ -61,6 +61,7 @@ Object.defineProperty(unescape, 'all', {
  */
 
 function unescape(str, type) {
+  if (typeof (str) === 'object') str = str.join();
   if (!str && typeof (str) !== 'string') return '';
   const chars = charSets[type || 'default'];
   const regex = toRegex(type, chars);
