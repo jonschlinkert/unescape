@@ -90,9 +90,7 @@ const unescape = (strings, ...values) => {
 /**
  * Expose charSets
  */
-
-unescape.chars = charSets.default;
-unescape.extras = charSets.extras;
+unescape.chars = charSets;
 
 /**
  * Expose `unescape`

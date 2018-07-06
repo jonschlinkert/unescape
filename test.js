@@ -1,12 +1,10 @@
-'use strict';
-
 require('mocha');
-var assert = require('assert');
-var decode = require('./');
+const assert = require('assert');
+const decode = require('./');
 
-describe('unescape', function() {
-  describe('defaults', function() {
-    it('should unescape default HTML entities', function() {
+describe('unescape', () => {
+  describe('defaults', () => {
+    it('should unescape all supported HTML entities', () => {
       assert.equal(decode('&quot;'), '"');
       assert.equal(decode('&#34;'), '"');
       assert.equal(decode('&apos;'), '\'');
@@ -17,67 +15,50 @@ describe('unescape', function() {
       assert.equal(decode('&#62;'), '>');
       assert.equal(decode('&lt;'), '<');
       assert.equal(decode('&#60;'), '<');
+      assert.equal(decode('&cent;'), '¢');
+      assert.equal(decode('&#162;'), '¢');
+      assert.equal(decode('&copy;'), '©');
+      assert.equal(decode('&#169;'), '©');
+      assert.equal(decode('&euro;'), '€');
+      assert.equal(decode('&#8364;'), '€');
+      assert.equal(decode('&pound;'), '£');
+      assert.equal(decode('&#163;'), '£');
+      assert.equal(decode('&reg;'), '®');
+      assert.equal(decode('&#174;'), '®');
+      assert.equal(decode('&yen;'), '¥');
+      assert.equal(decode('&#165;'), '¥');
     });
 
-    it('should unescape extra HTML entities', function() {
-      assert.equal(decode('&cent;', 'extras'), '¢');
-      assert.equal(decode('&#162;', 'extras'), '¢');
-      assert.equal(decode('&copy;', 'extras'), '©');
-      assert.equal(decode('&#169;', 'extras'), '©');
-      assert.equal(decode('&euro;', 'extras'), '€');
-      assert.equal(decode('&#8364;', 'extras'), '€');
-      assert.equal(decode('&pound;', 'extras'), '£');
-      assert.equal(decode('&#163;', 'extras'), '£');
-      assert.equal(decode('&reg;', 'extras'), '®');
-      assert.equal(decode('&#174;', 'extras'), '®');
-      assert.equal(decode('&yen;', 'extras'), '¥');
-      assert.equal(decode('&#165;', 'extras'), '¥');
+    it('should support template tag literals', () => {
+      assert.equal(decode`&#34;`, '"');
     });
 
-    it('should unescape all HTML entities', function() {
-      assert.equal(decode('&quot;', 'all'), '"');
-      assert.equal(decode('&#34;', 'all'), '"');
-      assert.equal(decode('&apos;', 'all'), '\'');
-      assert.equal(decode('&#39;', 'all'), '\'');
-      assert.equal(decode('&amp;', 'all'), '&');
-      assert.equal(decode('&#38;', 'all'), '&');
-      assert.equal(decode('&gt;', 'all'), '>');
-      assert.equal(decode('&#62;', 'all'), '>');
-      assert.equal(decode('&lt;', 'all'), '<');
-      assert.equal(decode('&#60;', 'all'), '<');
-      assert.equal(decode('&cent;', 'all'), '¢');
-      assert.equal(decode('&#162;', 'all'), '¢');
-      assert.equal(decode('&copy;', 'all'), '©');
-      assert.equal(decode('&#169;', 'all'), '©');
-      assert.equal(decode('&euro;', 'all'), '€');
-      assert.equal(decode('&#8364;', 'all'), '€');
-      assert.equal(decode('&pound;', 'all'), '£');
-      assert.equal(decode('&#163;', 'all'), '£');
-      assert.equal(decode('&reg;', 'all'), '®');
-      assert.equal(decode('&#174;', 'all'), '®');
-      assert.equal(decode('&yen;', 'all'), '¥');
-      assert.equal(decode('&#165;', 'all'), '¥');
+    it('should support template tag literals with variables', () => {
+      const chars = '&lt;div&gt;abc&lt;/div&gt;';
+      assert.equal(decode`testing ${chars}`, 'testing <div>abc</div>');
+      assert.equal(decode`testing ${chars} testing`, 'testing <div>abc</div> testing');
+      assert.equal(decode`${chars} testing ${chars}`, '<div>abc</div> testing <div>abc</div>');
     });
   });
 
-  describe('characters', function() {
-    it('should get an object of HTML entities/characters', function() {
-      assert.deepEqual(decode.chars, {
+  describe('characters', () => {
+    it('should get an object of all supported HTML entities', () => {
+      assert.deepEqual(decode.chars, { 
         '&quot;': '"',
         '&#34;': '"',
+        '&#034;': '"',
         '&apos;': '\'',
         '&#39;': '\'',
+        '&#039;': '\'',
         '&amp;': '&',
         '&#38;': '&',
+        '&#038;': '&',
         '&gt;': '>',
         '&#62;': '>',
+        '&#062;': '>',
         '&lt;': '<',
         '&#60;': '<',
-      });
-    });
-
-    it('should get extra characters', function() {
-      assert.deepEqual(decode.extras, {
+        '&#060;': '<',
         '&cent;': '¢',
         '&#162;': '¢',
         '&copy;': '©',
@@ -89,35 +70,9 @@ describe('unescape', function() {
         '&reg;': '®',
         '&#174;': '®',
         '&yen;': '¥',
-        '&#165;': '¥'
-      });
-    });
-
-    it('should get all characters', function() {
-      assert.deepEqual(decode.all, {
-        '&quot;': '"',
-        '&#34;': '"',
-        '&apos;': '\'',
-        '&#39;': '\'',
-        '&amp;': '&',
-        '&#38;': '&',
-        '&gt;': '>',
-        '&#62;': '>',
-        '&lt;': '<',
-        '&#60;': '<',
-        '&cent;': '¢',
-        '&#162;': '¢',
-        '&copy;': '©',
-        '&#169;': '©',
-        '&euro;': '€',
-        '&#8364;': '€',
-        '&pound;': '£',
-        '&#163;': '£',
-        '&reg;': '®',
-        '&#174;': '®',
-        '&yen;': '¥',
-        '&#165;': '¥'
-      });
+        '&#165;': '¥',
+        '&nbsp;': '\n',
+        '&#160;': '\n' });
     });
   });
 });
