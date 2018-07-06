@@ -14,6 +14,7 @@ module.exports = {
     "sourceType": "module",
     "ecmaVersion": 2017
   },
+  "extends": ["eslint:recommended"],
   "rules": {
     "accessor-pairs": "error",
     "arrow-spacing": ["error", {
