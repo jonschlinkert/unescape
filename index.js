@@ -1,9 +1,8 @@
+const extend = require('extend-shallow');
+const regexCache = {};
+var all = null;
 
-var extend = require('extend-shallow');
-var regexCache = {};
-var all;
-
-var charSets = {
+const charSets = {
   default: {
     '&quot;': '"',
     '&#34;': '"',
@@ -48,17 +47,23 @@ Object.defineProperty(charSets, 'all', {
   }
 });
 
+// don't trip the "charSets" getter unless it's explicitly called
+Object.defineProperty(unescape, 'all', {
+  get: function() {
+    return charSets.all;
+  }
+});
+
 /**
  * Convert HTML entities to HTML characters.
- *
  * @param  {String} `str` String with HTML entities to un-escape.
  * @return {String}
  */
 
 function unescape(str, type) {
-  if (!isString(str)) return '';
-  var chars = charSets[type || 'default'];
-  var regex = toRegex(type, chars);
+  if (!str && typeof (str) !== 'string') return '';
+  const chars = charSets[type || 'default'];
+  const regex = toRegex(type, chars);
   return str.replace(regex, function(m) {
     return chars[m];
   });
@@ -75,25 +80,11 @@ function toRegex(type, chars) {
 }
 
 /**
- * Returns true if str is a non-empty string
- */
-
-function isString(str) {
-  return str && typeof str === 'string';
-}
-
-/**
  * Expose charSets
  */
 
 unescape.chars = charSets.default;
 unescape.extras = charSets.extras;
-// don't trip the "charSets" getter unless it's explicitly called
-Object.defineProperty(unescape, 'all', {
-  get: function() {
-    return charSets.all;
-  }
-});
 
 /**
  * Expose `unescape`
