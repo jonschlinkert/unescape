@@ -124,6 +124,7 @@ module.exports = {
     "no-unreachable": "error",
     "no-unused-vars": "error",
     "no-useless-call": 0,
+    "no-var": "error",
     "no-with": "error",
     "one-var": [0, {
       "initialized": "never"
@@ -135,6 +136,7 @@ module.exports = {
       }
     }],
     "padded-blocks": [0, "never"],
+    "prefer-const": "error",
     "quotes": ["error", "single", "avoid-escape"],
     "radix": "error",
     "semi": ["error", "always"],
@@ -155,6 +157,7 @@ module.exports = {
     }],
     "use-isnan": "error",
     "valid-typeof": "error",
+    "vars-on-top": "error",
     "wrap-iife": ["error", "any"],
     "yoda": ["error", "never"]
   }

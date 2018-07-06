@@ -1,6 +1,6 @@
 const extend = require('extend-shallow');
 const regexCache = {};
-var all = null;
+let all = null;
 
 const charSets = {
   default: {
@@ -73,8 +73,8 @@ function toRegex(type, chars) {
   if (regexCache[type]) {
     return regexCache[type];
   }
-  var keys = Object.keys(chars).join('|');
-  var regex = new RegExp('(?=(' + keys + '))\\1', 'g');
+  const keys = Object.keys(chars).join('|');
+  const regex = new RegExp('(?=(' + keys + '))\\1', 'g');
   regexCache[type] = regex;
   return regex;
 }
