@@ -156,6 +156,7 @@ module.exports = {
     "spaced-comment": [0, "always", {
       "markers": ["global", "globals", "eslint", "eslint-disable", "*package", "!", ","]
     }],
+    "template-tag-spacing": ["error", "never"],
     "use-isnan": "error",
     "valid-typeof": "error",
     "vars-on-top": "error",

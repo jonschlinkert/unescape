@@ -72,7 +72,7 @@ const unescape = (strings, ...values) => {
         values[i] = values[i].replace(regex, (m) => {
           return charSets[m];
         });
-      } 
+      }
       string = string.replace(regex, (m) => {
         return charSets[m];
       });

@@ -18,7 +18,8 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "npm run lint && mocha",
+    "lint": "eslint *.js"
   },
   "devDependencies": {
     "eslint": "^5.0.1",

@@ -43,7 +43,7 @@ describe('unescape', () => {
 
   describe('characters', () => {
     it('should get an object of all supported HTML entities', () => {
-      assert.deepEqual(decode.chars, { 
+      assert.deepEqual(decode.chars, {
         '&quot;': '"',
         '&#34;': '"',
         '&#034;': '"',
@@ -72,7 +72,8 @@ describe('unescape', () => {
         '&yen;': '¥',
         '&#165;': '¥',
         '&nbsp;': '\n',
-        '&#160;': '\n' });
+        '&#160;': '\n'
+      });
     });
   });
 });
