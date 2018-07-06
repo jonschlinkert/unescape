@@ -62,16 +62,29 @@ const toRegex = (chars) => {
  * @param  {String} `str` String with HTML entities to un-escape.
  * @return {String}
  */
-const unescape = (...str) => {
-  if (typeof (str) === 'object') {
-    if (str[0][0] === '') str.shift();
-    str = str.join(); 
-  }
-  if (!str && typeof (str) !== 'string') return '';
+const unescape = (strings, ...values) => {
   const regex = toRegex(charSets);
-  return str.replace(regex, (m) => {
-    return charSets[m];
-  });
+  let str = '';
+
+  if (typeof (strings) === 'object') {
+    strings.forEach((string, i) => {
+      if (values[i]) {
+        values[i] = values[i].replace(regex, (m) => {
+          return charSets[m];
+        });
+      } 
+      string = string.replace(regex, (m) => {
+        return charSets[m];
+      });
+      str += string + (values[i] || '');
+    });
+  } else {
+    str = strings.replace(regex, (m) => {
+      return charSets[m];
+    });
+  }
+
+  return str;
 };
 
 /**
