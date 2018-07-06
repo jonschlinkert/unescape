@@ -1,7 +1,7 @@
 {
   "name": "unescape",
   "description": "Convert HTML entities to HTML characters, e.g. `&gt;` converts to `>`.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "homepage": "https://github.com/jonschlinkert/unescape",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/unescape",
