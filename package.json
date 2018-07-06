@@ -62,8 +62,5 @@
       "ent",
       "html-entities"
     ]
-  },
-  "dependencies": {
-    "extend-shallow": "^3.0.2"
   }
 }
