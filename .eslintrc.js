@@ -137,6 +137,7 @@ module.exports = {
     }],
     "padded-blocks": [0, "never"],
     "prefer-const": "error",
+    "prefer-arrow-callback": "error",
     "quotes": ["error", "single", "avoid-escape"],
     "radix": "error",
     "semi": ["error", "always"],

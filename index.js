@@ -1,84 +1,70 @@
-const extend = require('extend-shallow');
-const regexCache = {};
-let all = null;
-
+let regexCache = null;
 const charSets = {
-  default: {
-    '&quot;': '"',
-    '&#34;': '"',
+  '&quot;': '"',
+  '&#34;': '"',
 
-    '&apos;': '\'',
-    '&#39;': '\'',
+  '&apos;': '\'',
+  '&#39;': '\'',
 
-    '&amp;': '&',
-    '&#38;': '&',
+  '&amp;': '&',
+  '&#38;': '&',
 
-    '&gt;': '>',
-    '&#62;': '>',
+  '&gt;': '>',
+  '&#62;': '>',
 
-    '&lt;': '<',
-    '&#60;': '<'
-  },
-  extras: {
-    '&cent;': '¢',
-    '&#162;': '¢',
+  '&lt;': '<',
+  '&#60;': '<',
 
-    '&copy;': '©',
-    '&#169;': '©',
+  '&cent;': '¢',
+  '&#162;': '¢',
 
-    '&euro;': '€',
-    '&#8364;': '€',
+  '&copy;': '©',
+  '&#169;': '©',
 
-    '&pound;': '£',
-    '&#163;': '£',
+  '&euro;': '€',
+  '&#8364;': '€',
 
-    '&reg;': '®',
-    '&#174;': '®',
+  '&pound;': '£',
+  '&#163;': '£',
 
-    '&yen;': '¥',
-    '&#165;': '¥'
-  }
+  '&reg;': '®',
+  '&#174;': '®',
+
+  '&yen;': '¥',
+  '&#165;': '¥'
 };
 
-// don't merge char sets unless "all" is explicitly called
-Object.defineProperty(charSets, 'all', {
-  get: function() {
-    return all || (all = extend({}, charSets.default, charSets.extras));
+/**
+ * Transforms charactersets to regex for string replacement
+ * @param {String} type Type of chars to parse, either `default`, `extra` or `all`
+ * @param {String} chars Character set to parse
+ */
+const toRegex = (chars) => {
+  if (regexCache) {
+    return regexCache;
   }
-});
-
-// don't trip the "charSets" getter unless it's explicitly called
-Object.defineProperty(unescape, 'all', {
-  get: function() {
-    return charSets.all;
-  }
-});
+  const keys = Object.keys(chars).join('|');
+  const regex = new RegExp('(?=(' + keys + '))\\1', 'g');
+  regexCache = regex;
+  return regex;
+};
 
 /**
  * Convert HTML entities to HTML characters.
  * @param  {String} `str` String with HTML entities to un-escape.
  * @return {String}
  */
-
-function unescape(str, type) {
-  if (typeof (str) === 'object') str = str.join();
-  if (!str && typeof (str) !== 'string') return '';
-  const chars = charSets[type || 'default'];
-  const regex = toRegex(type, chars);
-  return str.replace(regex, function(m) {
-    return chars[m];
-  });
-}
-
-function toRegex(type, chars) {
-  if (regexCache[type]) {
-    return regexCache[type];
+const unescape = (...str) => {
+  if (typeof (str) === 'object') {
+    if (str[0][0] === '') str.shift();
+    str = str.join(); 
   }
-  const keys = Object.keys(chars).join('|');
-  const regex = new RegExp('(?=(' + keys + '))\\1', 'g');
-  regexCache[type] = regex;
-  return regex;
-}
+  if (!str && typeof (str) !== 'string') return '';
+  const regex = toRegex(charSets);
+  return str.replace(regex, (m) => {
+    return charSets[m];
+  });
+};
 
 /**
  * Expose charSets
