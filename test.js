@@ -17,6 +17,8 @@ describe('unescape', function() {
       assert.equal(decode('&#62;'), '>');
       assert.equal(decode('&lt;'), '<');
       assert.equal(decode('&#60;'), '<');
+      assert.equal(decode('&nbsp;'), '\u00a0');
+      assert.equal(decode('&#160;'), '\u00a0');
     });
 
     it('should unescape extra HTML entities', function() {
@@ -45,6 +47,8 @@ describe('unescape', function() {
       assert.equal(decode('&#62;', 'all'), '>');
       assert.equal(decode('&lt;', 'all'), '<');
       assert.equal(decode('&#60;', 'all'), '<');
+      assert.equal(decode('&nbsp;', 'all'), '\u00a0');
+      assert.equal(decode('&#160;', 'all'), '\u00a0');
       assert.equal(decode('&cent;', 'all'), '¢');
       assert.equal(decode('&#162;', 'all'), '¢');
       assert.equal(decode('&copy;', 'all'), '©');
@@ -73,6 +77,8 @@ describe('unescape', function() {
         '&#62;': '>',
         '&lt;': '<',
         '&#60;': '<',
+        '&nbsp;': '\u00a0',
+        '&#160;': '\u00a0',
       });
     });
 
@@ -105,6 +111,8 @@ describe('unescape', function() {
         '&#62;': '>',
         '&lt;': '<',
         '&#60;': '<',
+        '&nbsp;': '\u00a0',
+        '&#160;': '\u00a0',
         '&cent;': '¢',
         '&#162;': '¢',
         '&copy;': '©',
