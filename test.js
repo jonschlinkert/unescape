@@ -11,6 +11,7 @@ describe('unescape', function() {
       assert.equal(decode('&#34;'), '"');
       assert.equal(decode('&apos;'), '\'');
       assert.equal(decode('&#39;'), '\'');
+      assert.equal(decode('&#x27;'), '\'');
       assert.equal(decode('&amp;'), '&');
       assert.equal(decode('&#38;'), '&');
       assert.equal(decode('&gt;'), '>');
@@ -39,6 +40,7 @@ describe('unescape', function() {
       assert.equal(decode('&#34;', 'all'), '"');
       assert.equal(decode('&apos;', 'all'), '\'');
       assert.equal(decode('&#39;', 'all'), '\'');
+      assert.equal(decode('&#x27;', 'all'), '\'');
       assert.equal(decode('&amp;', 'all'), '&');
       assert.equal(decode('&#38;', 'all'), '&');
       assert.equal(decode('&gt;', 'all'), '>');
@@ -67,6 +69,7 @@ describe('unescape', function() {
         '&#34;': '"',
         '&apos;': '\'',
         '&#39;': '\'',
+        '&#x27;': '\'',
         '&amp;': '&',
         '&#38;': '&',
         '&gt;': '>',
@@ -99,6 +102,7 @@ describe('unescape', function() {
         '&#34;': '"',
         '&apos;': '\'',
         '&#39;': '\'',
+        '&#x27;': '\'',
         '&amp;': '&',
         '&#38;': '&',
         '&gt;': '>',
