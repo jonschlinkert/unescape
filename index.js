@@ -101,3 +101,6 @@ Object.defineProperty(unescape, 'all', {
  */
 
 module.exports = unescape;
+
+// Allow use of default import syntax in TypeScript
+module.exports.default = unescape;
