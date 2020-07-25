@@ -3,6 +3,7 @@ os:
   - linux
   - osx
 language: node_js
+install: npm install
 node_js:
   - node
   - '8'
