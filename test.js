@@ -26,6 +26,10 @@ describe('unescape', function() {
       assert.equal(decode('&#169;', 'extras'), '©');
       assert.equal(decode('&euro;', 'extras'), '€');
       assert.equal(decode('&#8364;', 'extras'), '€');
+      assert.equal(decode('&hellip;', 'extras'), '…');
+      assert.equal(decode('&#8230;', 'extras'), '…');
+      assert.equal(decode('&middot;', 'extras'), '·');
+      assert.equal(decode('&#183;', 'extras'), '·');
       assert.equal(decode('&pound;', 'extras'), '£');
       assert.equal(decode('&#163;', 'extras'), '£');
       assert.equal(decode('&reg;', 'extras'), '®');
@@ -51,6 +55,10 @@ describe('unescape', function() {
       assert.equal(decode('&#169;', 'all'), '©');
       assert.equal(decode('&euro;', 'all'), '€');
       assert.equal(decode('&#8364;', 'all'), '€');
+      assert.equal(decode('&hellip;', 'all'), '…');
+      assert.equal(decode('&#8230;', 'all'), '…');
+      assert.equal(decode('&middot;', 'all'), '·');
+      assert.equal(decode('&#183;', 'all'), '·');
       assert.equal(decode('&pound;', 'all'), '£');
       assert.equal(decode('&#163;', 'all'), '£');
       assert.equal(decode('&reg;', 'all'), '®');
@@ -84,6 +92,10 @@ describe('unescape', function() {
         '&#169;': '©',
         '&euro;': '€',
         '&#8364;': '€',
+        '&hellip;': '…',
+        '&#8230;': '…',
+        '&middot;': '·',
+        '&#183;': '·',
         '&pound;': '£',
         '&#163;': '£',
         '&reg;': '®',
@@ -111,6 +123,10 @@ describe('unescape', function() {
         '&#169;': '©',
         '&euro;': '€',
         '&#8364;': '€',
+        '&hellip;': '…',
+        '&#8230;': '…',
+        '&middot;': '·',
+        '&#183;': '·',
         '&pound;': '£',
         '&#163;': '£',
         '&reg;': '®',
