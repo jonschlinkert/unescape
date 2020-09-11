@@ -49,12 +49,14 @@ console.log(decode.chars);
 Only the following entities are converted when `'extras'` is passed as the second argument.
 
 | **Character** | **Description** | **Entity Name** | **Entity Number** |
-| `¢` | cent                               | `&cent;`  | `&#162;` |
-| `£` | pound                              | `&pound;` | `&#163;` |
-| `¥` | yen                                | `&yen;`   | `&#165;` |
-| `€` | euro                               | `&euro;`  | `&#8364;` |
-| `©` | copyright                          | `&copy;`  | `&#169;` |
-| `®` | registered trademark               | `&reg;`   | `&#174;` |
+| `¢` | cent                               | `&cent;`   | `&#162;`  |
+| `£` | pound                              | `&pound;`  | `&#163;`  |
+| `¥` | yen                                | `&yen;`    | `&#165;`  |
+| `€` | euro                               | `&euro;`   | `&#8364;` |
+| `©` | copyright                          | `&copy;`   | `&#169;`  |
+| `®` | registered trademark               | `&reg;`    | `&#174;`  |
+| `·` | middle dot                         | `&middot;` | `&#183;`  |
+| `…` | horizontal ellipsis                | `&hellip;` | `&#8230;` |
 
 Example:
 
